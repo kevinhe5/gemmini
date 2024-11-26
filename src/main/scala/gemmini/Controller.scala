@@ -13,6 +13,7 @@ import freechips.rocketchip.util.ClockGate
 import freechips.rocketchip.tilelink.TLIdentityNode
 import GemminiISA._
 import Util._
+import genevent._
 
 class GemminiCmd(rob_entries: Int)(implicit p: Parameters) extends Bundle {
   val cmd = new RoCCCommand
@@ -174,7 +175,7 @@ class GemminiModule[T <: Data: Arithmetic, U <: Data, V <: Data]
 
   reservation_station.io.alloc.valid := false.B
   when (reservation_station.io.alloc.fire) {
-      reservation_station.io.alloc.bits.pipeline_tag := GenEvent("ROB_ISSUE", Cat(unrolled_cmd.bits.cmd.rs1.asUInt, unrolled_cmd.bits.cmd.rs2.asUInt, unrolled_cmd.bits.cmd.inst.asUInt), Some(unrolled_cmd.bits.pipeline_tag))
+      reservation_station.io.alloc.bits.pipeline_tag := GenEvent(eventName="ROB_ISSUE", data=Cat(unrolled_cmd.bits.cmd.rs1.asUInt, unrolled_cmd.bits.cmd.rs2.asUInt, unrolled_cmd.bits.cmd.inst.asUInt), parent=Some(unrolled_cmd.bits.pipeline_tag))
     }.otherwise {
       reservation_station.io.alloc.bits.pipeline_tag := DontCare
     }

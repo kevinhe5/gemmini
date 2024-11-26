@@ -4,6 +4,7 @@ package gemmini
 import chisel3._
 import chisel3.util._
 import Util._
+import genevent._
 
 class Im2ColReadReq[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig[T, U, V]) extends Bundle {
 

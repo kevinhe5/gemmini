@@ -9,6 +9,7 @@ import org.chipsalliance.cde.config.Parameters
 import GemminiISA._
 import LocalAddr._
 import Util._
+import genevent._
 
 class LoopConvOuterBounds(val large_iterator_bitwidth: Int, val small_iterator_bitwidth: Int, val tiny_iterator_bitwidth: Int) extends Bundle {
   val batch_size = UInt(large_iterator_bitwidth.W)

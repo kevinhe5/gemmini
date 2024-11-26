@@ -7,6 +7,7 @@ import GemminiISA._
 import Util._
 import org.chipsalliance.cde.config.Parameters
 import midas.targetutils.PerfCounter
+import genevent._
 
 // TODO we need to check for WAW errors here
 // TODO deal with errors when reading scratchpad responses
